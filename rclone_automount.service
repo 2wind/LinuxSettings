@@ -1,0 +1,16 @@
+[Unit]
+Description=RClone Auto mount
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount --allow-other --vfs-cache-mode writes OneDrive_SNU: /home/yongwook/OneDrive_SNU
+ExecStop=/usr/bin/fusermount -uz /home/yongwook/OneDrive_SNU
+Restart=on-abort
+User=yongwook
+Group=yongwook
+
+[Install]
+
+WantedBy=default.target
